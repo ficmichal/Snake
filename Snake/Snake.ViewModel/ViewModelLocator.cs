@@ -55,6 +55,7 @@ namespace Snake.ViewModel
             }
         }
 
+
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>
