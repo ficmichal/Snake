@@ -12,13 +12,16 @@ namespace Snake.ViewModel
     public class MenuViewModel : ViewModelBase
     {
         #region Fields
+
         private IFrameNavigationService _navigationService;
         private string _textLabel = "Please, enter&#10; your nickname:";
         private string _nickname = "Anonim";
         private RelayCommand _gameCommand;
+
         #endregion
 
         #region Properties
+
         public string TextLabel
         {
             get
@@ -58,13 +61,16 @@ namespace Snake.ViewModel
                     }));
             }
         }
+
         #endregion
 
-        #region Properties
+        #region Constructor
+
         public MenuViewModel(IFrameNavigationService navigationService)
         {
             _navigationService = navigationService;
         }
+
         #endregion
     }
 }

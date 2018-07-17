@@ -5,14 +5,15 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Snake.Snake.View"
       mc:Ignorable="d" 
-      d:DesignHeight="400" d:DesignWidth="350"
+      d:DesignHeight="300" d:DesignWidth="400"
+      Background="Black"
       Title="Game" DataContext="{Binding Path=GameViewModel,Source={StaticResource Locator}}">
 
     <Grid>
         <ItemsControl ItemsSource="{Binding CellItems}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas Margin="0,0,47.4,93"/>
+                    <Canvas Margin="0,0,100,0"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemContainerStyle>

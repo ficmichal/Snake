@@ -57,7 +57,7 @@ namespace Snake.Snake.Model
                     break;
             }
         }
-        public void UpdateBoard(object sender, EventArgs e)
+        public void UpdateBoard()
         {
             Snake.ChangeDirection(DirectionSelected);
             if (!Snake.Move())
