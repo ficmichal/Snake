@@ -89,6 +89,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Snake.Model\Grid.cs" />
+    <Compile Include="Snake.Model\Point.cs" />
+    <Compile Include="Snake.Model\Snake.cs" />
     <Compile Include="Snake.ViewModel\GameOverViewModel.cs" />
     <Compile Include="Snake.ViewModel\Helpers\FrameNavigationService.cs" />
     <Compile Include="Snake.ViewModel\Helpers\IFrameNavigationService.cs" />
@@ -133,5 +136,6 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
