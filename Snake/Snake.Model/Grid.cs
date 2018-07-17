@@ -68,8 +68,8 @@ namespace Snake.Snake.Model
 
             Point i = new Point()
             {
-                X = Snake.body.First<Point>().X,
-                Y = Snake.body.First<Point>().Y
+                X = Snake.Body.First<Point>().X,
+                Y = Snake.Body.First<Point>().Y
             };
 
             Cell new_head = Board[i.X, i.Y];
@@ -116,8 +116,8 @@ namespace Snake.Snake.Model
 
             for (int i = 0; i < length; i++)
             {
-                int x = Snake.body[i].X;
-                int y = Snake.body[i].Y;
+                int x = Snake.Body[i].X;
+                int y = Snake.Body[i].Y;
                 Board[x, y] = Cell.SNAKE;
             }
         }

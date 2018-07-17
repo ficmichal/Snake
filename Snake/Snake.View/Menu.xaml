@@ -5,16 +5,16 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Snake.View"
       mc:Ignorable="d" 
-      d:DesignHeight="330" d:DesignWidth="330"
+      d:DesignHeight="400" d:DesignWidth="350"
       Background="Black"
       FontFamily="Ravie"
       Title="Menu" DataContext="{Binding Path=MenuViewModel,Source={StaticResource Locator}}">
 
     <Grid>
         <Canvas HorizontalAlignment="Left" Height="330" VerticalAlignment="Top" Width="330" Margin="0,0,0,-22.8">
-            <Button Command="{Binding GameOverCommand}" Content="Play!" Height="139" Canvas.Left="87" Canvas.Top="102" Width="206" Foreground="#FFADA700" Background="Black" FontSize="36"/>
+            <Button Command="{Binding GameCommand}" Content="Play!" Height="139" Canvas.Left="87" Canvas.Top="102" Width="206" Foreground="#FFADA700" Background="Black" FontSize="36"/>
             <Label Content="Please, enter&#10; your nickname:" Foreground="GhostWhite" Height="62" FontFamily="Ravie" Canvas.Left="10" Canvas.Top="10" Width="143"/>
-            <TextBox Text="{Binding Nickname}" Height="38" Canvas.Left="158" TextWrapping="Wrap" Canvas.Top="34" Width="84" Background="Black" Foreground="White" FontFamily="Ravie" FontSize="8" SelectionBrush="Black" BorderBrush="GhostWhite"/>
+            <TextBox Text="{Binding Nickname}" Height="38" Canvas.Left="158" TextWrapping="Wrap" Canvas.Top="34" Width="63" Background="Black" Foreground="White" FontFamily="Ravie" FontSize="8" SelectionBrush="Black" BorderBrush="GhostWhite"/>
         </Canvas>
     </Grid>
 </Page>

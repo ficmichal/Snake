@@ -14,8 +14,8 @@ namespace Snake.ViewModel
         #region Fields
         private IFrameNavigationService _navigationService;
         private string _textLabel = "Please, enter&#10; your nickname:";
-        private string _nickname = "here";
-        private RelayCommand _gameOverCommand;
+        private string _nickname = "Anonim";
+        private RelayCommand _gameCommand;
         #endregion
 
         #region Properties
@@ -46,15 +46,15 @@ namespace Snake.ViewModel
             }
         }
 
-        public RelayCommand GameOverCommand
+        public RelayCommand GameCommand
         {
             get
             {
-                return _gameOverCommand
-                    ?? (_gameOverCommand = new RelayCommand(
+                return _gameCommand
+                    ?? (_gameCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("GameOver");
+                        _navigationService.NavigateTo("Game");
                     }));
             }
         }

@@ -73,6 +73,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Snake.View\Game.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Snake.View\GameOver.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -94,11 +98,15 @@
     <Compile Include="Snake.Model\Snake.cs" />
     <Compile Include="Snake.ViewModel\GameOverViewModel.cs" />
     <Compile Include="Snake.ViewModel\GameViewModel.cs" />
+    <Compile Include="Snake.ViewModel\Helpers\CellItem.cs" />
     <Compile Include="Snake.ViewModel\Helpers\FrameNavigationService.cs" />
     <Compile Include="Snake.ViewModel\Helpers\IFrameNavigationService.cs" />
     <Compile Include="Snake.ViewModel\MainViewModel.cs" />
     <Compile Include="Snake.ViewModel\MenuViewModel.cs" />
     <Compile Include="Snake.ViewModel\ViewModelLocator.cs" />
+    <Compile Include="Snake.View\Game.xaml.cs">
+      <DependentUpon>Game.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Snake.View\GameOver.xaml.cs">
       <DependentUpon>GameOver.xaml</DependentUpon>
     </Compile>
