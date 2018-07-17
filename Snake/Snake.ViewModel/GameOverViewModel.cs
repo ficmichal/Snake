@@ -42,7 +42,7 @@ namespace Snake.ViewModel
         }
         #endregion
 
-        #region Properties
+        #region Constructor
         public GameOverViewModel(IFrameNavigationService navigationService)
         {
             _navigationService = navigationService;

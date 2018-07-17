@@ -93,6 +93,7 @@
     <Compile Include="Snake.Model\Point.cs" />
     <Compile Include="Snake.Model\Snake.cs" />
     <Compile Include="Snake.ViewModel\GameOverViewModel.cs" />
+    <Compile Include="Snake.ViewModel\GameViewModel.cs" />
     <Compile Include="Snake.ViewModel\Helpers\FrameNavigationService.cs" />
     <Compile Include="Snake.ViewModel\Helpers\IFrameNavigationService.cs" />
     <Compile Include="Snake.ViewModel\MainViewModel.cs" />

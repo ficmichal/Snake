@@ -6,11 +6,11 @@ namespace Snake.Snake.Model
     public class Snake
     {
         public enum Direction { UP, RIGHT, DOWN, LEFT };
-        public List<Point> body { get; set; } = new List<Point>();
-        public Direction direction { get; set; }
+        public List<Point> Body { get; set; } = new List<Point>();
+        public Direction DirectionOfSnake { get; set; }
         public Snake()
         {
-            body.AddRange(new List<Point>{
+            Body.AddRange(new List<Point>{
                 new Point
             {
                 X = 4,
@@ -21,20 +21,20 @@ namespace Snake.Snake.Model
                 X = 5,
                 Y = 5
             }});
-            direction = Direction.LEFT;
+            DirectionOfSnake = Direction.LEFT;
         }
 
-        public Point GetTail() => body.Last<Point>();
-        public void RemoveTail() => body.Remove(body.Last<Point>());
+        public Point GetTail() => Body.Last<Point>();
+        public void RemoveTail() => Body.Remove(Body.Last<Point>());
         public bool Move()
         {
             Point newHead = new Point()
             {
-                X = body.First<Point>().X,
-                Y = body.First<Point>().Y
+                X = Body.First<Point>().X,
+                Y = Body.First<Point>().Y
             };
 
-            switch (direction)
+            switch (DirectionOfSnake)
             {
                 case Direction.UP:
                     {
@@ -66,23 +66,23 @@ namespace Snake.Snake.Model
              || newHead.X < 0 || newHead.X > 19)
                 return false;
 
-            body.Insert(0, newHead);
+            Body.Insert(0, newHead);
 
             return true;
         }
         public void ChangeDirection(Direction dir)
         {
-            //Blocked change directions.
-            if ((direction == Direction.UP && dir == Direction.DOWN) ||
-              (direction == Direction.LEFT && dir == Direction.RIGHT) ||
-              (direction == Direction.RIGHT && dir == Direction.LEFT) ||
-              (direction == Direction.DOWN && dir == Direction.UP))
+            //Blocked change Directions.
+            if ((DirectionOfSnake == Direction.UP && dir == Direction.DOWN) ||
+              (DirectionOfSnake == Direction.LEFT && dir == Direction.RIGHT) ||
+              (DirectionOfSnake == Direction.RIGHT && dir == Direction.LEFT) ||
+              (DirectionOfSnake == Direction.DOWN && dir == Direction.UP))
             {
                 return;
             }
-            direction = dir;
+            DirectionOfSnake = dir;
         }
 
-        public int GetLength() => body.Count;
+        public int GetLength() => Body.Count;
     }
 }

@@ -19,6 +19,7 @@ namespace Snake.ViewModel
             ServiceLocator.SetLocatorProvider(() => SimpleIoc.Default);
             SimpleIoc.Default.Register<MainViewModel>();
             SimpleIoc.Default.Register<MenuViewModel>();
+            SimpleIoc.Default.Register<GameViewModel>();
             SimpleIoc.Default.Register<GameOverViewModel>();
             SetupNavigation();
         }
@@ -27,6 +28,7 @@ namespace Snake.ViewModel
         {
             var navigationService = new FrameNavigationService();
             navigationService.Configure("Menu", new Uri("../Snake.View/Menu.xaml", UriKind.Relative));
+            navigationService.Configure("Game", new Uri("../Snake.View/Game.xaml", UriKind.Relative));
             navigationService.Configure("GameOver", new Uri("../Snake.View/GameOver.xaml", UriKind.Relative));
             SimpleIoc.Default.Register<IFrameNavigationService>(() => navigationService);
         }
@@ -44,6 +46,14 @@ namespace Snake.ViewModel
             get
             {
                 return ServiceLocator.Current.GetInstance<MenuViewModel>();
+            }
+        }
+
+        public GameViewModel GameViewModel
+        {
+            get
+            {
+                return ServiceLocator.Current.GetInstance<GameViewModel>();
             }
         }
 
