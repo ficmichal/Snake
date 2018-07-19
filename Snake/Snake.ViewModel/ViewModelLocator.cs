@@ -65,6 +65,11 @@ namespace Snake.ViewModel
             }
         }
 
+        public static void ResetGameViewModel()
+        {
+            SimpleIoc.Default.Unregister<GameViewModel>();
+            SimpleIoc.Default.Register<GameViewModel>();
+        }
         /// <summary>
         /// Cleans up all the resources.
         /// </summary>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Snake.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,15 @@ namespace Snake.Snake.View
         public Game()
         {
             InitializeComponent();
+            Unloaded += new RoutedEventHandler(GameViewReset);
+        }
+
+        /// <summary>
+        /// Restart GameView, when game is over. (In case of play again).
+        /// </summary>
+        private void GameViewReset(object sender, RoutedEventArgs e)
+        {
+            ViewModelLocator.ResetGameViewModel();
         }
     }
 }

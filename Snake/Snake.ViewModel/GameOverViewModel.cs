@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
+using Snake.Snake.View;
 using Snake.ViewModel.Helpers;
 using System;
 using System.Globalization;
@@ -16,7 +17,9 @@ namespace Snake.ViewModel
         #region Fields
         private IFrameNavigationService _navigationService;
         private string _textLabel = "GAME OVER";
-        private RelayCommand _menuCommand;
+        private string _playAgainButton = "PLAY AGAIN?";
+        private RelayCommand _toMenuCommand;
+        private RelayCommand _toGameCommand;
         #endregion
 
         #region Properties
@@ -28,19 +31,35 @@ namespace Snake.ViewModel
             }
         }
 
-        public RelayCommand GameOverCommand
+        public RelayCommand ToMenuCommand
         {
             get
             {
-                return _menuCommand
-                    ?? (_menuCommand = new RelayCommand(
+                return _toMenuCommand
+                    ?? (_toMenuCommand = new RelayCommand(
                     () =>
                     {
                         _navigationService.NavigateTo("Menu");
                     }));
             }
         }
+
+        public RelayCommand ToGameCommand
+        {
+            get
+            {
+                return _toGameCommand
+                    ?? (_toGameCommand = new RelayCommand(
+                    () =>
+                    {
+                        //ViewModelLocator.ResetGameViewModel()
+                        _navigationService.NavigateTo("Game");
+                    }));
+            }
+        }
         #endregion
+
+
 
         #region Constructor
         public GameOverViewModel(IFrameNavigationService navigationService)

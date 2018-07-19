@@ -40,12 +40,12 @@ namespace Snake.ViewModel
         {
             GridModel.UpdateBoard();
             UpdateViewOfBoard();
+
             if(CheckGameOver())
             {
                 Timer.Stop();
-                Application.Current.MainWindow.KeyDown -= new KeyEventHandler(GridModel.OnButtonKeyDown);
+                 Application.Current.MainWindow.KeyDown -= new KeyEventHandler(GridModel.OnButtonKeyDown);
                 _navigationService.NavigateTo("GameOver");
-                Timer.Tick -= new EventHandler(TimerTick);
             }
         }
         #endregion
@@ -55,18 +55,26 @@ namespace Snake.ViewModel
         public GameViewModel(IFrameNavigationService navigationService)
         {
             _navigationService = navigationService;
+            LoadView();
+            ConfigureTimer();
+            Application.Current.MainWindow.KeyDown += new KeyEventHandler(GridModel.OnButtonKeyDown);
+        }
+
+        private void LoadView()
+        {
             GridModel = new Grid();
             CellItems = new ObservableCollection<CellItem>();
-
             LoadBoard();
+        }
 
+        private void ConfigureTimer()
+        {
             Timer = new DispatcherTimer
             {
                 Interval = TimeSpan.FromMilliseconds(100)
             };
             Timer.Tick += new EventHandler(TimerTick);
             Timer.Start();
-            Application.Current.MainWindow.KeyDown += new KeyEventHandler(GridModel.OnButtonKeyDown);
         }
 
         private void LoadBoard()
@@ -81,6 +89,7 @@ namespace Snake.ViewModel
                     CellItems.Add(cellItem);
                 }
             }
+            GridModel.State = GameState.GAME;
         }
 
         private void UpdateViewOfBoard()

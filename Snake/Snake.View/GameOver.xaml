@@ -11,7 +11,8 @@
     <Grid>
         <StackPanel>
             <Label Content="{Binding TextLabel}" Height="58" Margin="0,0,-0.4,0"/>
-            <Button Command="{Binding GameOverCommand}" Height="35" Margin="0,0,-0.4,0"/>
+            <Button Command="{Binding ToMenuCommand}" Height="35" Margin="0,0,-0.4,0"/>
+            <Button Command="{Binding ToGameCommand}" Height="35" Margin="0,0,-0.4,0"/>
         </StackPanel>
     </Grid>
 </Page>
