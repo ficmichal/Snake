@@ -5,14 +5,14 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Snake.Snake.View"
       mc:Ignorable="d" 
-      d:DesignHeight="330" d:DesignWidth="330"
+      d:DesignHeight="300" d:DesignWidth="400"
+      FontFamily="Ravie"
+      Background="Black"
       Title="GameOver" DataContext="{Binding Path=GameOverViewModel,Source={StaticResource Locator}}">
 
     <Grid>
-        <StackPanel>
-            <Label Content="{Binding TextLabel}" Height="58" Margin="0,0,-0.4,0"/>
-            <Button Command="{Binding ToMenuCommand}" Height="35" Margin="0,0,-0.4,0"/>
-            <Button Command="{Binding ToGameCommand}" Height="35" Margin="0,0,-0.4,0"/>
-        </StackPanel>
+        <Canvas>
+            <Button Content="Play again?" Command="{Binding ToGameCommand}" Height="41" Canvas.Left="106" Width="187" Canvas.Top="173" RenderTransformOrigin="0.705,0.707" Foreground="#FFADA700" Background="Black" FontSize="24"/>
+        </Canvas>
     </Grid>
 </Page>

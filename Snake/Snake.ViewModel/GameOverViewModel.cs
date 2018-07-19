@@ -16,34 +16,10 @@ namespace Snake.ViewModel
     {
         #region Fields
         private IFrameNavigationService _navigationService;
-        private string _textLabel = "GAME OVER";
-        private string _playAgainButton = "PLAY AGAIN?";
-        private RelayCommand _toMenuCommand;
         private RelayCommand _toGameCommand;
         #endregion
 
         #region Properties
-        public string TextLabel
-        {
-            get
-            {
-                return _textLabel;
-            }
-        }
-
-        public RelayCommand ToMenuCommand
-        {
-            get
-            {
-                return _toMenuCommand
-                    ?? (_toMenuCommand = new RelayCommand(
-                    () =>
-                    {
-                        _navigationService.NavigateTo("Menu");
-                    }));
-            }
-        }
-
         public RelayCommand ToGameCommand
         {
             get
