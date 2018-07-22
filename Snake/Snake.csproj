@@ -153,6 +153,8 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <Compile Include="Snake.ViewModel\GameViewModel.Players.cs" />
+    <Compile Include="Snake.ViewModel\GameOverViewModel.BestPlayers.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

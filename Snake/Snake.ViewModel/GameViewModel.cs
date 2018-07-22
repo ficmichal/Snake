@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight;
+using Snake.Players;
 using Snake.Snake.Model;
 using Snake.ViewModel.Helpers;
 using System;
@@ -15,7 +16,7 @@ using static Snake.Snake.Model.Grid;
 
 namespace Snake.ViewModel
 {
-    public class GameViewModel : ViewModelBase, INotifyPropertyChanged
+    public partial class GameViewModel : ViewModelBase
     {
         #region Fields
 
@@ -29,6 +30,7 @@ namespace Snake.ViewModel
 
         #region Properties
 
+        public Player Player { get; set; } = new Player();
         public DispatcherTimer Timer { get; set; }
 
         public ObservableCollection<CellItem> CellItems { get; set; }
@@ -65,9 +67,11 @@ namespace Snake.ViewModel
 
             if (CheckGameOver())
             {
+                Player.Nickname = (string)_navigationService.Parameter;
+                CheckPlayer(Player, Score);
                 Timer.Stop();
                  Application.Current.MainWindow.KeyDown -= new KeyEventHandler(GridModel.OnButtonKeyDown);
-                _navigationService.NavigateTo("GameOver");
+                _navigationService.NavigateTo("GameOver",Player.Nickname);
             }
         }
         #endregion

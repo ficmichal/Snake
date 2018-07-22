@@ -57,7 +57,7 @@ namespace Snake.ViewModel
                     ?? (_gameCommand = new RelayCommand(
                     () =>
                     {
-                        _navigationService.NavigateTo("Game");
+                        _navigationService.NavigateTo("Game", Nickname);
                     }));
             }
         }

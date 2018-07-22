@@ -88,4 +88,5 @@ namespace Snake.Players.Repositories
         public Task<List<Player>> ExecuteQueryAsync(string sql, object[] sqlParametersObjects)
             => Context._Players.SqlQuery(sql, sqlParametersObjects).ToListAsync();
     }
+
 }

@@ -11,7 +11,7 @@ namespace Snake.Players.EF
     {
         public SnakePlayers() : base("name=SnakeConnection")
         {
-                
+            this.Configuration.LazyLoadingEnabled = false;  
         }
 
         public virtual DbSet<Player> _Players { get; set; }

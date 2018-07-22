@@ -12,7 +12,6 @@ namespace Snake.Players.Repositories
     public abstract class BaseRepository : IDisposable
     {
         public SnakePlayers Context { get; } = new SnakePlayers();
-        protected DbSet<Player> Table;
 
         internal int SaveChanges()
         {
@@ -79,7 +78,7 @@ namespace Snake.Players.Repositories
             catch (Exception ex)
             {
                 //some other exception happened and should be handled
-                throw;
+                throw ex;
             }
         }
 
