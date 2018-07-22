@@ -4,6 +4,7 @@ using Snake.ViewModel.Helpers;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,13 +15,15 @@ using static Snake.Snake.Model.Grid;
 
 namespace Snake.ViewModel
 {
-    public class GameViewModel : ViewModelBase
+    public class GameViewModel : ViewModelBase, INotifyPropertyChanged
     {
         #region Fields
 
         private IFrameNavigationService _navigationService;
         private int _boardSize = 20;
         private int _sizeOfRect = 15;
+        private int _score = 0;
+        private int _ticks = 0;
 
         #endregion
 
@@ -30,7 +33,26 @@ namespace Snake.ViewModel
 
         public ObservableCollection<CellItem> CellItems { get; set; }
 
+
         public Grid GridModel { get; set; }
+
+        public int Score
+        {
+            get
+            {
+                return _score;
+            }
+
+            set
+            {
+                if (_score == value)
+                {
+                    return;
+                }
+                _score = value;
+                RaisePropertyChanged("Score");
+            }
+        }
 
         #endregion
 
@@ -41,7 +63,7 @@ namespace Snake.ViewModel
             GridModel.UpdateBoard();
             UpdateViewOfBoard();
 
-            if(CheckGameOver())
+            if (CheckGameOver())
             {
                 Timer.Stop();
                  Application.Current.MainWindow.KeyDown -= new KeyEventHandler(GridModel.OnButtonKeyDown);
@@ -50,7 +72,7 @@ namespace Snake.ViewModel
         }
         #endregion
 
-        #region Constructor and his methods
+        #region Constructor
 
         public GameViewModel(IFrameNavigationService navigationService)
         {
@@ -59,6 +81,10 @@ namespace Snake.ViewModel
             ConfigureTimer();
             Application.Current.MainWindow.KeyDown += new KeyEventHandler(GridModel.OnButtonKeyDown);
         }
+
+        #endregion
+
+        #region Methods
 
         private void LoadView()
         {
@@ -94,6 +120,8 @@ namespace Snake.ViewModel
 
         private void UpdateViewOfBoard()
         {
+            int _scoreSnake = 0;
+
             for (int i = 0; i < _boardSize; i++)
             {
                 for (int j = 0; j < _boardSize; j++)
@@ -104,6 +132,10 @@ namespace Snake.ViewModel
                         FirstOrDefault().Fill = RenderFill(cell);
                 }
             }
+            //Count Score
+            _ticks++;
+            _scoreSnake = GridModel.GetScore()* 40;
+            Score = _scoreSnake + _ticks;
         }
 
         private string RenderFill(Cell cell)
@@ -128,7 +160,6 @@ namespace Snake.ViewModel
 
             return result;
         }
-        #endregion
 
         private bool CheckGameOver()
         {
@@ -137,5 +168,7 @@ namespace Snake.ViewModel
 
             return false;
         }
+
+        #endregion
     }
 }

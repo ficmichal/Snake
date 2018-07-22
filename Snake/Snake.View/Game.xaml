@@ -7,13 +7,27 @@
       mc:Ignorable="d" 
       d:DesignHeight="300" d:DesignWidth="400"
       Background="Black"
+      FontFamily="Ravie"
       Title="Game" DataContext="{Binding Path=GameViewModel,Source={StaticResource Locator}}">
 
     <Grid>
-        <ItemsControl ItemsSource="{Binding CellItems}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="330" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Border
+            BorderThickness="5"
+            BorderBrush="Gold"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Top"
+            Width="310"
+            Height="310">
+        </Border>
+
+        <ItemsControl ItemsSource="{Binding CellItems}" Grid.Column="0">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
-                    <Canvas Margin="0,0,100,0"/>
+                    <Canvas Margin="5,5,105,5"/>
                 </ItemsPanelTemplate>
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemContainerStyle>
@@ -28,5 +42,12 @@
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+        <StackPanel  Grid.Column="1">
+            <TextBlock Foreground="White">
+                Score: <LineBreak />
+            </TextBlock>
+            <Label Name="scoreText" Content="{Binding Score}" Foreground="White">
+            </Label>
+        </StackPanel>
     </Grid>
 </Page>
