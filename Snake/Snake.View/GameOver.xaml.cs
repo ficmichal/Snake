@@ -24,6 +24,12 @@ namespace Snake.Snake.View
         public GameOver()
         {
             InitializeComponent();
+            Loaded += GameOverViewReset;
+        }
+
+        private void GameOverViewReset(object sender, RoutedEventArgs e)
+        {
+            ViewModelLocator.ResetGameOverViewModel();
         }
     }
 }

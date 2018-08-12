@@ -17,7 +17,6 @@ namespace Snake.Players.Repositories
         {
             try
             {
-                Context._Players.OrderByDescending(x => x.BestScore);
                 return Context.SaveChanges();
             }
             catch (DbUpdateConcurrencyException ex)
@@ -52,7 +51,6 @@ namespace Snake.Players.Repositories
         {
             try
             {
-                Context._Players.OrderByDescending(x => x.BestScore);
                 return await Context.SaveChangesAsync();
             }
             catch (DbUpdateConcurrencyException ex)

@@ -14,6 +14,6 @@ namespace Snake.Players.EF
             this.Configuration.LazyLoadingEnabled = false;  
         }
 
-        public virtual DbSet<Player> _Players { get; set; }
+        public virtual IDbSet<Player> _Players { get; set; }
     }
 }

@@ -12,7 +12,7 @@
 
     <Grid>
         <Canvas>
-            <DataGrid ItemsSource="{Binding TheBestPlayers}" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" Background="#FF00000F" Foreground="Black" Canvas.Left="66" Canvas.Top="10" BorderBrush="#FF001931">
+            <DataGrid ItemsSource="{Binding TheBestPlayers}" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" Background="White" Foreground="Black" Canvas.Left="66" Canvas.Top="10" BorderBrush="#FF001931" Height="149">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Position" Binding="{Binding Position}"/>
                     <DataGridTextColumn Header="Nickname" Binding="{Binding Player.Nickname}"/>

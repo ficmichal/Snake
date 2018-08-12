@@ -28,17 +28,8 @@ namespace Snake.Players.Repositories
 
         Task<Player> GetOneAsync(string nickname);
 
-        List<Player> GetAll();
+        ICollection<Player> GetAll();
 
         Task<List<Player>> GetAllAsync();
-
-
-        List<Player> ExecuteQuery(string sql);
-
-        Task<List<Player>> ExecuteQueryAsync(string sql);
-
-        List<Player> ExecuteQuery(string sql, object[] sqlParametersObjects);
-
-        Task<List<Player>> ExecuteQueryAsync(string sql, object[] sqlParametersObjects);
     }
 }

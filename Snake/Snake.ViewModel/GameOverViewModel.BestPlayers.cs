@@ -15,7 +15,7 @@ namespace Snake.ViewModel
         {
             public string Position { get; set; }
 
-			public Player Player { get; set; }
+            public Player Player { get; set; } = new Player();
         }
     }
 }

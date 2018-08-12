@@ -60,18 +60,18 @@ namespace Snake.ViewModel
 
         #region Events
 
-        private void TimerTick(object sender, EventArgs e)
+        private async void TimerTick(object sender, EventArgs e)
         {
             GridModel.UpdateBoard();
             UpdateViewOfBoard();
 
             if (CheckGameOver())
             {
-                Player.Nickname = (string)_navigationService.Parameter;
-                CheckPlayer(Player, Score);
+                var nickname = (string)_navigationService.Parameter;
+                await CheckPlayerAsync(nickname, Score);
                 Timer.Stop();
                  Application.Current.MainWindow.KeyDown -= new KeyEventHandler(GridModel.OnButtonKeyDown);
-                _navigationService.NavigateTo("GameOver",Player.Nickname);
+                _navigationService.NavigateTo("GameOver", nickname);
             }
         }
         #endregion

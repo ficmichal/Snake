@@ -11,54 +11,46 @@ namespace Snake.ViewModel
 {
     public partial class GameViewModel : ViewModelBase
     {
-        private void CheckPlayer(Player player, int score)
-        {
-            Player tmpPlayer = GetPlayer(player.Nickname);
-			if(tmpPlayer == null)
-            {
-                player.BestScore = score;
-                AddNewPlayer(player);
-            }
-            else if ((tmpPlayer.Nickname == player.Nickname))
-            {
-                UpdatePlayer(player, score);
-            }
-            else
-            {
-                player.BestScore = score;
-                AddNewPlayer(player);
-            }
-        }
-
-        private void AddNewPlayer(Player Player)
+        private async Task CheckPlayerAsync(string nickname, int score)
         {
             using (var repo = new PlayerRepository())
             {
-                repo.AddAsync(Player);
-            }
-        }
-
-        private void UpdatePlayer(Player player, int score)
-        {
-            using (var repo = new PlayerRepository())
-            {
-                var PlayerToUpdate = GetPlayer(player.Nickname);
-                if (score > player.BestScore)
+                Player tmpPlayer = await GetPlayerAsync(nickname, repo);
+                if (tmpPlayer == null || tmpPlayer.Nickname != nickname)
                 {
-                    PlayerToUpdate.BestScore = score;
-                    repo.Save(PlayerToUpdate);
+                    tmpPlayer = new Player
+                    {
+                        Nickname = nickname,
+                        BestScore = score
+                    };
+                    await AddNewPlayerAsync(tmpPlayer, repo);
+                }
+                else
+                {
+                    await UpdatePlayerAsync(tmpPlayer, score, repo);
                 }
             }
-
         }
 
-        private Player GetPlayer(string nickname)
+        private async Task AddNewPlayerAsync(Player player, PlayerRepository repo)
         {
-            using (var repo = new PlayerRepository())
+            await repo.AddAsync(player);
+        }
+
+        private async Task UpdatePlayerAsync(Player player, int score, PlayerRepository repo)
+        {
+            if (score > player.BestScore)
             {
-                Player Player = repo.GetOne(nickname);
-                return Player;
+                player.BestScore = score;
+                await repo.SaveAsync(player);
             }
+        }
+
+        private async Task<Player> GetPlayerAsync(string nickname, PlayerRepository repo)
+        {
+            Player Player = await repo.GetOneAsync(nickname);
+
+            return Player;
         }
     }
 }

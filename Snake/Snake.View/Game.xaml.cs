@@ -24,7 +24,7 @@ namespace Snake.Snake.View
         public Game()
         {
             InitializeComponent();
-            Unloaded += new RoutedEventHandler(GameViewReset);
+            Unloaded += GameViewReset;
         }
 
         /// <summary>

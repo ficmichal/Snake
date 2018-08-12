@@ -67,26 +67,15 @@ namespace Snake.Players.Repositories
             => Context._Players.Find(nickname);
 
         public Task<Player> GetOneAsync(string nickname)
-            => Context._Players.FindAsync(nickname);
+           => Context._Players.FirstOrDefaultAsync(x => x.Nickname == nickname);
 
-
-        public List<Player> GetAll()
+        //public Task<Player> GetOneAsync(string nickname)
+        //  => Context._Players.FirstOrDefaultAsync(x => x.Nickname == nickname);
+        public ICollection<Player> GetAll()
             => Context._Players.ToList();
 
         public Task<List<Player>> GetAllAsync()
             => Context._Players.ToListAsync();
-
-        public List<Player> ExecuteQuery(string sql)
-            => Context._Players.SqlQuery(sql).ToList();
-
-        public Task<List<Player>> ExecuteQueryAsync(string sql)
-            => Context._Players.SqlQuery(sql).ToListAsync();
-
-        public List<Player> ExecuteQuery(string sql, object[] sqlParametersObjects)
-            => Context._Players.SqlQuery(sql, sqlParametersObjects).ToList();
-
-        public Task<List<Player>> ExecuteQueryAsync(string sql, object[] sqlParametersObjects)
-            => Context._Players.SqlQuery(sql, sqlParametersObjects).ToListAsync();
     }
 
 }

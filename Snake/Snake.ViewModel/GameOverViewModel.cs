@@ -62,12 +62,12 @@ namespace Snake.ViewModel
                 int i = 1;
                 foreach(Player player in bestPlayers)
                 {
-                    BestPlayers _oneOfBestPlayer = new BestPlayers
+                    BestPlayers oneOfBestPlayer = new BestPlayers
                     {
                         Position = String.Format(i.ToString() + "."),
                         Player = player
                     };
-                    TheBestPlayers.Add(_oneOfBestPlayer);
+                    TheBestPlayers.Add(oneOfBestPlayer);
                     i++;
                 }
             }
