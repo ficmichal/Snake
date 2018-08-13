@@ -8,19 +8,61 @@
       d:DesignHeight="300" d:DesignWidth="400"
       FontFamily="Ravie"
       Background="Black"
-      Title="GameOver" DataContext="{Binding Path=GameOverViewModel,Source={StaticResource Locator}}">
+      Title="GameOver" 
+      DataContext="{Binding Path=GameOverViewModel,Source={StaticResource Locator}}">
 
     <Grid>
         <Canvas>
-            <DataGrid ItemsSource="{Binding TheBestPlayers}" AutoGenerateColumns="False" GridLinesVisibility="None" CanUserResizeRows="False" RowDetailsVisibilityMode="Collapsed" Background="White" Foreground="Black" Canvas.Left="66" Canvas.Top="10" BorderBrush="#FF001931" Height="149">
-                <DataGrid.Columns>
-                    <DataGridTextColumn Header="Position" Binding="{Binding Position}"/>
-                    <DataGridTextColumn Header="Nickname" Binding="{Binding Player.Nickname}"/>
-                    <DataGridTextColumn Header="Best Score" Binding="{Binding Player.BestScore}"/>
-                </DataGrid.Columns>
-            </DataGrid>
-            <Button Content="Play again" Command="{Binding ToGameCommand}" Height="48" Canvas.Left="114" Width="190" Canvas.Top="206" RenderTransformOrigin="0.705,0.707" Foreground="#FFADA700" Background="Black" FontSize="24"/>
-            <Button Content="Exit" Command="{Binding ToGameCommand}" Height="48" Canvas.Left="114" Width="190" Canvas.Top="252" RenderTransformOrigin="0.705,0.707" Foreground="#FFADA700" Background="Black" FontSize="24"/>
+            <Canvas.Resources>
+                <Style x:Key="GameOverButtons" TargetType="{x:Type Button}">
+                    <Setter Property="Height" Value="48"/>
+                    <Setter Property="Canvas.Left" Value="114"/>
+                    <Setter Property="Width" Value="198"/>
+                    <Setter Property="RenderTransformOrigin" Value="0.705,0.707"/>
+                    <Setter Property="Foreground" Value="#FFADA700"/>
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Style>
+            </Canvas.Resources>
+            <ListView ItemsSource="{Binding TheBestPlayers}" 
+                      Canvas.Left="35" 
+                      Canvas.Top="27" 
+                      Height="135" 
+                      Background="Black" 
+                      BorderBrush="Black" 
+                      Foreground="White" 
+                      Width="326">
+                <ListView.Resources>
+                    <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                                    <Border BorderThickness="0,0,0,1" BorderBrush="Black" Background="Black">
+                                        <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Background" Value="Black" />
+                        <Setter Property="Focusable" Value="False" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" >
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding Position}" />
+                        <GridViewColumn Header="Nickname" Width="150" DisplayMemberBinding="{Binding Player.Nickname}" />
+                        <GridViewColumn Header="Best Score" Width="100" DisplayMemberBinding="{Binding Player.BestScore}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Style="{StaticResource GameOverButtons}"
+                    Content="Play again" 
+                    Command="{Binding ToGameCommand}" 
+                    Canvas.Top="206" />
+            <Button Style="{StaticResource GameOverButtons}"
+                    Content="Exit" Command="{Binding ToExitCommand}" 
+                    Canvas.Top="252" />
         </Canvas>
     </Grid>
 </Page>

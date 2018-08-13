@@ -21,6 +21,7 @@ namespace Snake.ViewModel
         #region Fields
         private IFrameNavigationService _navigationService;
         private RelayCommand _toGameCommand;
+        private RelayCommand _toExitCommand;
         #endregion
 
         #region Properties
@@ -41,9 +42,20 @@ namespace Snake.ViewModel
                     }));
             }
         }
+
+        public RelayCommand ToExitCommand
+        {
+            get
+            {
+                return _toExitCommand
+                    ?? (_toExitCommand = new RelayCommand(
+                    () =>
+                    {
+                        Application.Current.MainWindow.Close();
+                    }));
+            }
+        }
         #endregion
-
-
 
         #region Constructor
         public GameOverViewModel(IFrameNavigationService navigationService)
@@ -57,7 +69,7 @@ namespace Snake.ViewModel
         {
             using (var repo = new PlayerRepository())
             {
-                var bestPlayers = repo.GetAll().OrderByDescending( x => x.BestScore).ToList();
+                var bestPlayers = repo.GetAll().OrderByDescending(x => x.BestScore).Take(5).ToList();
 
                 int i = 1;
                 foreach(Player player in bestPlayers)
