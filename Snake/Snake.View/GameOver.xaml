@@ -5,13 +5,64 @@
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:Snake.Snake.View"
       mc:Ignorable="d" 
-      d:DesignHeight="330" d:DesignWidth="330"
-      Title="GameOver" DataContext="{Binding Path=GameOverViewModel,Source={StaticResource Locator}}">
+      d:DesignHeight="300" d:DesignWidth="400"
+      FontFamily="Ravie"
+      Background="Black"
+      Title="GameOver" 
+      DataContext="{Binding Path=GameOverViewModel,Source={StaticResource Locator}}">
 
     <Grid>
-        <StackPanel>
-            <Label Content="{Binding TextLabel}" Height="58" Margin="0,0,-0.4,0"/>
-            <Button Command="{Binding GameOverCommand}" Height="35" Margin="0,0,-0.4,0"/>
-        </StackPanel>
+        <Canvas>
+            <Canvas.Resources>
+                <Style x:Key="GameOverButtons" TargetType="{x:Type Button}">
+                    <Setter Property="Height" Value="48"/>
+                    <Setter Property="Canvas.Left" Value="114"/>
+                    <Setter Property="Width" Value="198"/>
+                    <Setter Property="RenderTransformOrigin" Value="0.705,0.707"/>
+                    <Setter Property="Foreground" Value="#FFADA700"/>
+                    <Setter Property="Background" Value="Black"/>
+                    <Setter Property="FontSize" Value="24"/>
+                </Style>
+            </Canvas.Resources>
+            <ListView ItemsSource="{Binding TheBestPlayers}" 
+                      Canvas.Left="35" 
+                      Canvas.Top="27" 
+                      Height="135" 
+                      Background="Black" 
+                      BorderBrush="Black" 
+                      Foreground="White" 
+                      Width="326">
+                <ListView.Resources>
+                    <Style x:Key="GridViewColumnHeaderStyle" TargetType="{x:Type GridViewColumnHeader}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                                    <Border BorderThickness="0,0,0,1" BorderBrush="Black" Background="Black">
+                                        <TextBlock x:Name="ContentHeader" Text="{TemplateBinding Content}" Padding="5,5,5,0" Width="{TemplateBinding Width}" />
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Setter Property="Foreground" Value="White" />
+                        <Setter Property="Background" Value="Black" />
+                        <Setter Property="Focusable" Value="False" />
+                    </Style>
+                </ListView.Resources>
+                <ListView.View>
+                    <GridView ColumnHeaderContainerStyle="{StaticResource GridViewColumnHeaderStyle}" >
+                        <GridViewColumn Width="50" DisplayMemberBinding="{Binding Position}" />
+                        <GridViewColumn Header="Nickname" Width="150" DisplayMemberBinding="{Binding Player.Nickname}" />
+                        <GridViewColumn Header="Best Score" Width="100" DisplayMemberBinding="{Binding Player.BestScore}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
+            <Button Style="{StaticResource GameOverButtons}"
+                    Content="Play again" 
+                    Command="{Binding ToGameCommand}" 
+                    Canvas.Top="206" />
+            <Button Style="{StaticResource GameOverButtons}"
+                    Content="Exit" Command="{Binding ToExitCommand}" 
+                    Canvas.Top="252" />
+        </Canvas>
     </Grid>
 </Page>

@@ -38,6 +38,7 @@ namespace Snake.ViewModel.Helpers
         }
         public object Parameter { get; private set; }
         #endregion
+
         #region Ctors and Methods
         public FrameNavigationService()
         {
@@ -130,8 +131,7 @@ namespace Snake.ViewModel.Helpers
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

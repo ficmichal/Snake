@@ -17,19 +17,22 @@ using System.Windows.Shapes;
 namespace Snake.Snake.View
 {
     /// <summary>
-    /// Logika interakcji dla klasy GameOver.xaml
+    /// Logika interakcji dla klasy Game.xaml
     /// </summary>
-    public partial class GameOver : Page
+    public partial class Game : Page
     {
-        public GameOver()
+        public Game()
         {
             InitializeComponent();
-            Loaded += GameOverViewReset;
+            Unloaded += GameViewReset;
         }
 
-        private void GameOverViewReset(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Restart GameView, when game is over. (In case of play again).
+        /// </summary>
+        private void GameViewReset(object sender, RoutedEventArgs e)
         {
-            ViewModelLocator.ResetGameOverViewModel();
+            ViewModelLocator.ResetGameViewModel();
         }
     }
 }

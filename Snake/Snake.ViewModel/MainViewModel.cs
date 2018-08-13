@@ -1,8 +1,6 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using Snake.ViewModel.Helpers;
-using System;
-using System.Windows.Input;
 
 namespace Snake.ViewModel
 {
@@ -13,6 +11,7 @@ namespace Snake.ViewModel
     {
         private IFrameNavigationService _navigationService;
         private RelayCommand _loadedCommand;
+
         public RelayCommand LoadedCommand
         {
             get

@@ -9,7 +9,7 @@
     mc:Ignorable="d"
     ResizeMode="NoResize"
     Title="Snake!" 
-    Width="330" Height="330" 
+    Width="400" Height="347" 
     WindowStartupLocation="CenterScreen"
     DataContext="{Binding Path=MainViewModel, Source={StaticResource Locator}}"
     >
@@ -19,6 +19,6 @@
         </i:EventTrigger>
     </i:Interaction.Triggers>
     <Grid>
-        <Frame x:Name="MainFrame" VerticalAlignment="Stretch" HorizontalAlignment="Stretch"/>
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden"/>    
     </Grid>
 </Window>
